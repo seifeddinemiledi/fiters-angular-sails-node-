@@ -1,0 +1,169 @@
+<div [ngBusy]="busy"></div>
+<ol class="breadcrumb mb-0">
+  <li class="breadcrumb-item">Admin</li>
+  <li class="breadcrumb-item"><a [routerLink]="['/']" href="#">Dahboard</a>
+  </li>
+  <li class="breadcrumb-item"><a [routerLink]="['/user']" href="#">Users</a>
+  </li>
+  <li class="breadcrumb-item active">Edit</li>
+  <li *ngIf="item" class="breadcrumb-item active">{{ item.id }}</li>
+</ol>
+<div class="container-fluid">
+  <div class="animated fadeIn">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h6><i class="icon-note"></i> New User </h6>
+            <div class="card-actions">
+              <a href="#">
+                <small class="text-muted">docs</small>
+              </a>
+            </div>
+          </div>
+          <div class="card-block">
+
+            <form [formGroup]="form" (ngSubmit)="submitForm(form.value)" novalidate="novalidate">
+
+              <div class="row">
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['firstname'].valid,'has-danger':!form.controls['firstname'].valid}">
+                  <label class="form-control-label" for="firstname">First Name</label>
+                  <input [formControl]="form.controls['firstname']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['firstname'].valid,'form-control-danger':!form.controls['firstname'].valid}"
+                    id="firstname" name="firstname">
+                  <em *ngIf="!form.controls['firstname'].valid" class="error form-control-feedback">Please add a firstname</em>
+                </div>
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['lastname'].valid,'has-danger':!form.controls['lastname'].valid}">
+                  <label class="form-control-label" for="lastname">Last Name</label>
+                  <input [formControl]="form.controls['lastname']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['lastname'].valid,'form-control-danger':!form.controls['lastname'].valid}"
+                    id="lastname" name="lastname">
+                  <em *ngIf="!form.controls['lastname'].valid" class="error form-control-feedback">Please add a lastname</em>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['phonePrefixNumber'].valid,'has-danger':!form.controls['phonePrefixNumber'].valid}">
+                  <label class="form-control-label" for="phonePrefixNumber">Phoene prefix</label>
+                  <input [formControl]="form.controls['phonePrefixNumber']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['phonePrefixNumber'].valid,'form-control-danger':!form.controls['phonePrefixNumber'].valid}"
+                    id="phonePrefixNumber" name="phonePrefixNumber">
+                  <em *ngIf="!form.controls['phonePrefixNumber'].valid" class="error form-control-feedback">Please add a phonePrefixNumber</em>
+                </div>
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['phoneNumber'].valid,'has-danger':!form.controls['phoneNumber'].valid}">
+                  <label class="form-control-label" for="phoneNumber">Phone number</label>
+                  <input [formControl]="form.controls['phoneNumber']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['phoneNumber'].valid,'form-control-danger':!form.controls['phoneNumber'].valid}"
+                    id="phoneNumber" name="phoneNumber">
+                  <em *ngIf="!form.controls['phoneNumber'].valid" class="error form-control-feedback">Please add a phoneNumber</em>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="form-group col-md-6">
+                  <label class="form-control-label" for="photoUrl">Photo</label>
+                  <input accept="image/*" (change)="imageChanged($event)" type="file" class="form-control" id="photoUrl" name="photoUrl">
+
+
+                </div>
+                <div class="form-group col-md-3">
+                  <img width="75" src="{{ image }}" />
+                </div>
+                <div *ngIf="item" class="form-group col-md-3">
+                  <img width="75" src="{{ (item.photoUrl)? item.photoUrl: 'assets/img/preloader.gif' }}" onError="this.onerror=null;this.src='assets/img/preloader.gif';" />
+                </div>
+
+              </div>
+              <div class="row">
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['birthDate'].valid,'has-danger':!form.controls['birthDate'].valid}">
+                  <label class="form-control-label" for="birthDate">Birth </label>
+                  <input [formControl]="form.controls['birthDate']" type="date" class="form-control" [ngClass]="{'form-control-success':form.controls['birthDate'].valid,'form-control-danger':!form.controls['birthDate'].valid}"
+                    id="birthDate" name="birthDate">
+                  <em *ngIf="!form.controls['birthDate'].valid" class="error form-control-feedback">Please add a birthDate</em>
+                </div>
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['gender'].valid,'has-danger':!form.controls['gender'].valid}">
+                  <label class="form-control-label">Gender</label>
+                  <div class="form-control">
+                    <label class="radio-inline col-md-3" for="inline-radio1">
+                      <input  [formControl]="form.controls['gender']" type="radio" id="inline-radio1" name="gender" value="0">H
+                    </label>
+                    <label class="radio-inline col-md-3" for="inline-radio2">
+                      <input  [formControl]="form.controls['gender']" type="radio" id="inline-radio2" name="gender" value="1">F
+                    </label>
+                  </div>
+                  <em *ngIf="!form.controls['gender'].valid" class="error form-control-feedback">Please check an option</em>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['email'].valid,'has-danger':!form.controls['email'].valid}">
+                  <label class="form-control-label" for="email">Email</label>
+                  <input [formControl]="form.controls['email']" type="email" class="form-control" [ngClass]="{'form-control-success':form.controls['email'].valid,'form-control-danger':!form.controls['email'].valid}"
+                    id="email" name="email">
+                  <em *ngIf="!form.controls['email'].valid" class="error form-control-feedback">Please add a email</em>
+                </div>
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['password'].valid,'has-danger':!form.controls['password'].valid}">
+                  <label class="form-control-label" for="password">Password</label>
+                  <input [formControl]="form.controls['password']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['password'].valid,'form-control-danger':!form.controls['password'].valid}"
+                    id="password" name="password">
+                  <em *ngIf="!form.controls['password'].valid" class="error form-control-feedback">Please add a password</em>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="form-group col-md-4" [ngClass]="{'has-success':form.controls['weight'].valid,'has-danger':!form.controls['weight'].valid}">
+                  <label class="form-control-label" for="weight">weight</label>
+                  <input [formControl]="form.controls['weight']" type="number" class="form-control" [ngClass]="{'form-control-success':form.controls['weight'].valid,'form-control-danger':!form.controls['weight'].valid}"
+                    id="weight" name="weight">
+                  <em *ngIf="!form.controls['weight'].valid" class="error form-control-feedback">Please add a weight</em>
+                </div>
+
+                <div class="form-group col-md-4" [ngClass]="{'has-success':form.controls['height'].valid,'has-danger':!form.controls['height'].valid}">
+                  <label class="form-control-label" for="height">Height</label>
+                  <input [formControl]="form.controls['height']" type="number" class="form-control" [ngClass]="{'form-control-success':form.controls['height'].valid,'form-control-danger':!form.controls['height'].valid}"
+                    id="height" name="height">
+                  <em *ngIf="!form.controls['height'].valid" class="error form-control-feedback">Please add a height</em>
+                </div>
+
+                <div class="form-group col-md-4" [ngClass]="{'has-success':form.controls['shape'].valid,'has-danger':!form.controls['shape'].valid}">
+                  <label class="form-control-label" for="shape">Shape</label>
+                  <input [formControl]="form.controls['shape']" type="number" class="form-control" [ngClass]="{'form-control-success':form.controls['shape'].valid,'form-control-danger':!form.controls['shape'].valid}"
+                    id="shape" name="shape">
+                  <em *ngIf="!form.controls['shape'].valid" class="error form-control-feedback">Please add a shape</em>
+                </div>
+
+              </div>
+
+
+              <div class="form-group" [ngClass]="{'has-success':form.controls['handicap'].valid,'has-danger':!form.controls['handicap'].valid}">
+                <label class="form-control-label" for="handicap">Handicap</label>
+                <input [formControl]="form.controls['handicap']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['handicap'].valid,'form-control-danger':!form.controls['handicap'].valid}"
+                  id="handicap" name="handicap">
+                <em *ngIf="!form.controls['handicap'].valid" class="error form-control-feedback">Please add a handicap</em>
+              </div>
+
+
+
+
+
+              <div class="form-group">
+                <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Valider</button>
+                <em class="text-danger">{{ error }}</em>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

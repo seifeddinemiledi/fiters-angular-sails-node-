@@ -1,0 +1,173 @@
+<div [ngBusy]="busy"></div>
+<ol class="breadcrumb mb-0">
+  <li class="breadcrumb-item">Admin</li>
+  <li class="breadcrumb-item"><a [routerLink]="['/']" href="#">Dahboard</a>
+  </li>
+  <li class="breadcrumb-item"><a [routerLink]="['/coache']" href="#">Coache</a>
+  </li>
+  <li class="breadcrumb-item active">Create</li>
+</ol>
+<div class="container-fluid">
+  <div class="animated fadeIn">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h6><i class="icon-note"></i> New Coache </h6>
+            <div class="card-actions">
+              <a href="#">
+                <small class="text-muted">docs</small>
+              </a>
+            </div>
+          </div>
+          <div class="card-block">
+
+            <form [formGroup]="form" (ngSubmit)="submitForm(form.value)" novalidate="novalidate">
+
+              <div class="row">
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['firstname'].valid,'has-danger':!form.controls['firstname'].valid}">
+                  <label class="form-control-label" for="firstname">First Name</label>
+                  <input [formControl]="form.controls['firstname']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['firstname'].valid,'form-control-danger':!form.controls['firstname'].valid}"
+                    id="firstname" name="firstname">
+                  <em *ngIf="!form.controls['firstname'].valid" class="error form-control-feedback">Please add a firstname</em>
+                </div>
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['lastname'].valid,'has-danger':!form.controls['lastname'].valid}">
+                  <label class="form-control-label" for="lastname">Last Name</label>
+                  <input [formControl]="form.controls['lastname']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['lastname'].valid,'form-control-danger':!form.controls['lastname'].valid}"
+                    id="lastname" name="lastname">
+                  <em *ngIf="!form.controls['lastname'].valid" class="error form-control-feedback">Please add a lastname</em>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['phonePrefixNumber'].valid,'has-danger':!form.controls['phonePrefixNumber'].valid}">
+                  <label class="form-control-label" for="phonePrefixNumber">Phoene prefix</label>
+                  <input [formControl]="form.controls['phonePrefixNumber']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['phonePrefixNumber'].valid,'form-control-danger':!form.controls['phonePrefixNumber'].valid}"
+                    id="phonePrefixNumber" name="phonePrefixNumber">
+                  <em *ngIf="!form.controls['phonePrefixNumber'].valid" class="error form-control-feedback">Please add a phonePrefixNumber</em>
+                </div>
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['phoneNumber'].valid,'has-danger':!form.controls['phoneNumber'].valid}">
+                  <label class="form-control-label" for="phoneNumber">Phone number</label>
+                  <input [formControl]="form.controls['phoneNumber']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['phoneNumber'].valid,'form-control-danger':!form.controls['phoneNumber'].valid}"
+                    id="phoneNumber" name="phoneNumber">
+                  <em *ngIf="!form.controls['phoneNumber'].valid" class="error form-control-feedback">Please add a phoneNumber</em>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="form-group col-md-6">
+                  <label class="form-control-label" for="photoUrl">Photo</label>
+                  <input accept="image/*" (change)="imageChanged($event)" type="file" class="form-control" id="photoUrl" name="photoUrl">
+
+
+                </div>
+                <div class="form-group col-md-3">
+                  <img width="75" src="{{ image }}" />
+                </div>
+
+              </div>
+              <div class="row">
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['username'].valid,'has-danger':!form.controls['username'].valid}">
+                  <label class="form-control-label" for="username">Birth </label>
+                  <input [formControl]="form.controls['username']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['username'].valid,'form-control-danger':!form.controls['username'].valid}"
+                    id="username" name="username">
+                  <em *ngIf="!form.controls['username'].valid" class="error form-control-feedback">Please add a username</em>
+                </div>
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['gender'].valid,'has-danger':!form.controls['gender'].valid}">
+                  <label class="form-control-label">Gender</label>
+                  <div class="form-control">
+                    <label class="radio-inline col-md-3" for="inline-radio1">
+                      <input [formControl]="form.controls['gender']" type="radio" id="inline-radio1" name="gender" value="0">H
+                    </label>
+                    <label class="radio-inline col-md-3" for="inline-radio2">
+                      <input [formControl]="form.controls['gender']" type="radio" id="inline-radio2" name="gender" value="1">F
+                    </label>
+                  </div>
+                  <em *ngIf="!form.controls['gender'].valid" class="error form-control-feedback">Please check an option</em>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['email'].valid,'has-danger':!form.controls['email'].valid}">
+                  <label class="form-control-label" for="email">Email</label>
+                  <input [formControl]="form.controls['email']" type="email" class="form-control" [ngClass]="{'form-control-success':form.controls['email'].valid,'form-control-danger':!form.controls['email'].valid}"
+                    id="email" name="email">
+                  <em *ngIf="!form.controls['email'].valid" class="error form-control-feedback">Please add a email</em>
+                </div>
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['password'].valid,'has-danger':!form.controls['password'].valid}">
+                  <label class="form-control-label" for="password">Password</label>
+                  <input [formControl]="form.controls['password']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['password'].valid,'form-control-danger':!form.controls['password'].valid}"
+                    id="password" name="password">
+                  <em *ngIf="!form.controls['password'].valid" class="error form-control-feedback">Please add a password</em>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="form-group col-md-4" [ngClass]="{'has-success':form.controls['monthCoach'].valid,'has-danger':!form.controls['monthCoach'].valid}">
+                  <label class="form-control-label" for="monthCoach">MonthCoach</label>
+                  <input [formControl]="form.controls['monthCoach']" type="number" class="form-control" [ngClass]="{'form-control-success':form.controls['monthCoach'].valid,'form-control-danger':!form.controls['monthCoach'].valid}"
+                    id="monthCoach" name="monthCoach">
+                  <em *ngIf="!form.controls['monthCoach'].valid" class="error form-control-feedback">Please add a monthCoach</em>
+                </div>
+
+                <div class="form-group col-md-4" [ngClass]="{'has-success':form.controls['expertCoach'].valid,'has-danger':!form.controls['expertCoach'].valid}">
+                  <label class="form-control-label" for="expertCoach">ExpertCoach</label>
+                  <input [formControl]="form.controls['expertCoach']" type="number" class="form-control" [ngClass]="{'form-control-success':form.controls['expertCoach'].valid,'form-control-danger':!form.controls['expertCoach'].valid}"
+                    id="expertCoach" name="expertCoach">
+                  <em *ngIf="!form.controls['expertCoach'].valid" class="error form-control-feedback">Please add a expertCoach</em>
+                </div>
+
+                <div class="form-group col-md-4" [ngClass]="{'has-success':form.controls['marathonCoach'].valid,'has-danger':!form.controls['marathonCoach'].valid}">
+                  <label class="form-control-label" for="marathonCoach">marathonCoach</label>
+                  <input [formControl]="form.controls['marathonCoach']" type="number" class="form-control" [ngClass]="{'form-control-success':form.controls['marathonCoach'].valid,'form-control-danger':!form.controls['marathonCoach'].valid}"
+                    id="marathonCoach" name="marathonCoach">
+                  <em *ngIf="!form.controls['marathonCoach'].valid" class="error form-control-feedback">Please add a marathonCoach</em>
+                </div>
+
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <agm-map [latitude]="lat" [longitude]="lng">
+                    <agm-marker [markerDraggable]="true" (dragEnd)="onDragEnd($event)" [latitude]="lat" [longitude]="lng"></agm-marker>
+                  </agm-map>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label class="form-control-label" for="longitude">Lng</label>
+                  <input disabled value="{{ longitude }}"   type="text" class="form-control" 
+                  id="longitude" name="longitude" >
+                  <br>
+                  <label  class="form-control-label" for="latitude">Lat</label>
+                  <input disabled value="{{ latitude }}"  type="text" class="form-control"
+                   id="latitude" name="latitude" >
+                    
+                </div>
+              </div>
+
+              <div class="form-group">
+                <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Valider</button>
+                <em class="text-danger">{{ error }}</em>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

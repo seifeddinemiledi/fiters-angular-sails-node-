@@ -1,0 +1,98 @@
+<div [ngBusy]="busy"></div>
+<ol class="breadcrumb mb-0">
+  <li class="breadcrumb-item">Admin</li>
+  <li class="breadcrumb-item"><a [routerLink]="['/']" href="#">Dahboard</a>
+  </li>
+  <li class="breadcrumb-item"><a [routerLink]="['/place']" href="#">Places</a>
+  </li>
+  <li class="breadcrumb-item active">Create</li>
+</ol>
+<div class="container-fluid">
+  <div class="animated fadeIn">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h6><i class="icon-note"></i> New Place </h6>
+            <div class="card-actions">
+              <a href="#">
+                <small class="text-muted">docs</small>
+              </a>
+            </div>
+          </div>
+          <div class="card-block">
+
+            <form [formGroup]="form" (ngSubmit)="submitForm(form.value)" novalidate="novalidate">
+
+              <div class="row">
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['name'].valid,'has-danger':!form.controls['name'].valid}">
+                  <label class="form-control-label" for="name">Name</label>
+                  <input [formControl]="form.controls['name']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['name'].valid,'form-control-danger':!form.controls['name'].valid}"
+                    id="name" name="name">
+                  <em *ngIf="!form.controls['name'].valid" class="error form-control-feedback">Please add a name</em>
+                </div>
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['address'].valid,'has-danger':!form.controls['address'].valid}">
+                  <label class="form-control-label" for="address">Adress</label>
+                  <input [formControl]="form.controls['address']" type="text" class="form-control" [ngClass]="{'form-control-success':form.controls['address'].valid,'form-control-danger':!form.controls['address'].valid}"
+                    id="address" name="address">
+                  <em *ngIf="!form.controls['address'].valid" class="error form-control-feedback">Please add a address</em>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['start_time'].valid,'has-danger':!form.controls['start_time'].valid}">
+                  <label class="form-control-label" for="start_time">Start</label>
+                  <input [formControl]="form.controls['start_time']" type="time" class="form-control" [ngClass]="{'form-control-success':form.controls['start_time'].valid,'form-control-danger':!form.controls['start_time'].valid}"
+                    id="start_time" name="start_time">
+                  <em *ngIf="!form.controls['start_time'].valid" class="error form-control-feedback">Please add a start_time</em>
+                </div>
+
+                <div class="form-group col-md-6" [ngClass]="{'has-success':form.controls['end_time'].valid,'has-danger':!form.controls['end_time'].valid}">
+                  <label class="form-control-label" for="end_time">End</label>
+                  <input [formControl]="form.controls['end_time']" type="time" class="form-control" [ngClass]="{'form-control-success':form.controls['end_time'].valid,'form-control-danger':!form.controls['end_time'].valid}"
+                    id="end_time" name="end_time">
+                  <em *ngIf="!form.controls['end_time'].valid" class="error form-control-feedback">Please add a end_time</em>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <agm-map [latitude]="lat" [longitude]="lng">
+                    <agm-marker [markerDraggable]="true" (dragEnd)="onDragEnd($event)" [latitude]="lat" [longitude]="lng"></agm-marker>
+                  </agm-map>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label class="form-control-label" for="longitude">Lng</label>
+                  <input disabled value="{{ longitude }}"   type="text" class="form-control" 
+                  id="longitude" name="longitude" >
+                  <br>
+                  <label  class="form-control-label" for="latitude">Lat</label>
+                  <input disabled value="{{ latitude }}"  type="text" class="form-control"
+                   id="latitude" name="latitude" >
+                    
+                </div>
+              </div>
+
+              
+
+
+
+
+
+              <div class="form-group">
+                <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Valider</button>
+                <em class="text-danger">{{ error }}</em>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

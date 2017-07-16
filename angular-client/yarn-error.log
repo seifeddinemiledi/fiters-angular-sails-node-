@@ -1,0 +1,73 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
+
+PATH: 
+  C:\Program Files\PuTTY\;C:\Program Files\OpenSSH-Win64;C:\Program Files\nodejs;C:\Program Files (x86)\Odoo 10.0\PostgreSQL\bin;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\dotnet\;C:\Program Files (x86)\Yarn\bin;C:\Windows\System32;C:\Users\mednaceur\.dnx\bin;C:\tizen-sdk\tools;C:\Program Files\Java\jdk1.8.0_45\bin;;C:\Program Files (x86)\Microsoft VS Code\bin;C:\opencv\build\x86\vc10\bin;C:\opencv\build\x86\vc9\bin;C:\opencv\build\x86\mingw\bin;C:\cygwin64\bin;C:\Users\mednaceur\AppData\Local\Android\sdk\platform-tools;C:\Users\mednaceur\AppData\Roaming\Composer\vendor\bin;C:\Users\mednaceur\AppData\Roaming\npm;C:\wamp\bin\php\php-7.1.4;C:\Users\mednaceur\AppData\Local\Android\sdk\build-tools\25.0.0;C:\cygwin64\bin;C:\Program Files (x86)\Odoo 10.0\PostgreSQL\bin;C:\Users\mednaceur\AppData\Local\Yarn\bin;C:\Program Files (x86)\Yarn\bin
+
+Yarn version: 
+  0.24.6
+
+Node version: 
+  7.7.4
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  {
+    "name": "angular-client",
+    "version": "0.0.0",
+    "license": "MIT",
+    "scripts": {
+      "ng": "ng",
+      "start": "ng serve",
+      "build": "ng build",
+      "test": "ng test",
+      "lint": "ng lint",
+      "e2e": "ng e2e"
+    },
+    "private": true,
+    "dependencies": {
+      "@angular/common": "^4.0.0",
+      "@angular/compiler": "^4.0.0",
+      "@angular/core": "^4.0.0",
+      "@angular/forms": "^4.0.0",
+      "@angular/http": "^4.0.0",
+      "@angular/platform-browser": "^4.0.0",
+      "@angular/platform-browser-dynamic": "^4.0.0",
+      "@angular/router": "^4.0.0",
+      "core-js": "^2.4.1",
+      "rxjs": "^5.1.0",
+      "zone.js": "^0.8.4"
+    },
+    "devDependencies": {
+      "@angular/cli": "1.0.4",
+      "@angular/compiler-cli": "^4.0.0",
+      "@types/jasmine": "2.5.38",
+      "@types/node": "~6.0.60",
+      "codelyzer": "~2.0.0",
+      "jasmine-core": "~2.5.2",
+      "jasmine-spec-reporter": "~3.2.0",
+      "karma": "~1.4.1",
+      "karma-chrome-launcher": "~2.1.1",
+      "karma-cli": "~1.0.1",
+      "karma-jasmine": "~1.1.0",
+      "karma-jasmine-html-reporter": "^0.2.2",
+      "karma-coverage-istanbul-reporter": "^0.2.0",
+      "protractor": "~5.1.0",
+      "ts-node": "~2.0.0",
+      "tslint": "~4.5.0",
+      "typescript": "~2.2.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: read ECONNRESET
+      at exports._errnoException (util.js:1034:11)
+      at TLSWrap.onread (net.js:584:26)

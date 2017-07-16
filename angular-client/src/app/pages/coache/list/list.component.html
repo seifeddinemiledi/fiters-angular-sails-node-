@@ -1,0 +1,83 @@
+<div [ngBusy]="busy"></div>
+<ol class="breadcrumb mb-0">
+  <li class="breadcrumb-item">Admin</li>
+  <li class="breadcrumb-item"><a [routerLink]="['/']" href="#">Dahboard</a>
+  </li>
+  <li class="breadcrumb-item active">Coaches</li>
+</ol>
+<div class="container-fluid">
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-edit"></i>Angular DataTables
+        <div class="card-actions">
+          <a href="#">
+                <small class="text-muted">Coaches</small>
+              </a>
+        </div>
+      </div>
+    </div>
+    <div class="card-block">
+      <table class="table table-striped table-bordered datatable" [mfData]="items | coacheFilter : filterQuery" #mf="mfDataTable"
+        [mfRowsOnPage]="rowsOnPage">
+        <thead>
+          <tr>
+            <th colspan="6">
+              Search by Name:
+              <input class="form-control" [(ngModel)]="filterQuery" />
+            </th>
+            <th colspan="1">
+              <a class="btn btn-success" style="float: right;" [routerLink]="['/coache/create']">
+                    <i class="fa fa-plus "></i>
+                  </a>
+            </th>
+          </tr>
+          <tr>
+            <th></th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>UserName</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of mf.data">
+            <td>
+              <div class="avatar float-right">
+                <img src="{{ (item.photoUrl)? item.photoUrl: 'assets/img/preloader.gif' }}" onError="this.onerror=null;this.src='assets/img/preloader.gif';"
+                  class="img-avatar" alt="">
+              </div>
+            </td>
+            <td>{{ item.firstname }}</td>
+            <td>{{ item.lastname }}</td>
+            <td>{{ item.email }}</td>
+            <td>({{ item.phonePrefixNumber }}) {{ item.phoneNumber }}</td>
+            <td>{{ item.username }}</td>
+            <td class="flex-row">
+              <a class="btn btn-info" [routerLink]="['/coache','details',item.id]">
+                    <i class="fa fa-search "></i>
+              </a>
+              <a class="btn btn-warning" [routerLink]="['/coache','edit',item.id]">
+                    <i class="fa fa-edit "></i>
+              </a>
+              <a class="btn btn-danger" [routerLink]="['/coache','delete',item.id]">
+                    <i class="fa fa-trash-o "></i>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="7">
+
+              <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]">
+
+              </mfBootstrapPaginator>
+              <p class="float-right">Max rows on one page * </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
